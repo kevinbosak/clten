@@ -1,0 +1,25 @@
+<div id="admin_groups" class="admin">
+	<header>
+		<h1>Admin: Groups
+			<% INCLUDE 'admin_header.html' %>
+		</h1>
+	</header>
+	<aside>
+		<% IF vars.user %>
+		<% INCLUDE 'main_column.html' %>
+		<% END %>
+	</aside>
+	<section>
+		<ul class="bullet-list">
+			<% FOREACH group in groups %>
+			<li>
+				<div class="name"><a href="groups/<% group.id %>">(
+					<% group.id %>
+					)
+					<% group.name %>
+					</a></div>
+			</li>
+			<% END %>
+		</ul>
+	</section>
+</div>

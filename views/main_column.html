@@ -1,0 +1,11 @@
+<% IF !vars.user.groupme_id %>
+<!-- UNREGISTERED USERS -->
+<div class="alert alert-danger" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<h2 class="alert-link">Attention:</h2>
+<p>Please take a moment to complete your <a href="/secure/groupme" class="alert-link">GroupMe registration</a> and get involved in our chats</a></p>
+</div>
+<% ELSE %>
+<!-- REGISTERED USERS -->
+
+<% END %>

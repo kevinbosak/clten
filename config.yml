@@ -1,0 +1,73 @@
+# This is the main configuration file of your Dancer app
+# env-related settings should go to environments/$env.yml
+# all the settings in this file will be loaded at Dancer's startup.
+
+# Your application's name
+appname: "clten"
+
+logger: "console"
+log: "debug"
+logger_format: "%T from %h [@%D] %L (%f): %m"
+
+# The default layout to use for your application (located in
+# views/layouts/main.tt)
+layout: "main"
+
+# when the charset is set to UTF-8 Dancer will handle for you
+# all the magic of encoding and decoding. You should not care
+# about unicode within your app when this setting is set (recommended).
+charset: "UTF-8"
+
+# template engine
+# simple: default and very basic template engine
+# template_toolkit: TT
+
+#template: "simple"
+
+template: "template_toolkit"
+engines:
+  template_toolkit:
+    start_tag: '<%'
+    end_tag:   '%>'
+    extension: 'html'
+
+# For session support enable the following line and see Dancer::Session
+session: "cookie"
+session_cookie_key: "@#9801mccxkja;328o#%11eefjkl1*)##)y"
+
+plugins:
+  DBIC:
+    default:
+      dsn: dbi:Pg:dbname=clten;host=127.0.0.1
+      schema_class: 'CltEn::Schema'
+      user: clten
+      password: clten
+
+DB_HOST: 'localhost'
+DB_USER: 'clten'
+DB_NAME: 'clten'
+DB_PASS: 'clten'
+
+# Rooms
+UNVERIFIED_ACCESS_LEVEL_ID: 7
+VERIFIED_ACCESS_LEVEL_ID: 6
+UNVERIFIED_ROOM_ID: 7
+ADMIN_ALERT_ROOM_ID: 18
+
+# Amazon
+SQS_MANAGER_QUEUE: 'http://sqs.us-east-1.amazonaws.com/754581873564/clten_manager'
+SQS_INCOMING_QUEUE: 'http://sqs.us-east-1.amazonaws.com/754581873564/clten_incoming'
+
+AWS_ACCESS_KEY: 'ACCESS_KEY'
+AWS_SECRET_KEY: 'SECRET_KEY'
+
+# GroupMe
+GM_token: 'GM_TOKEN'
+GM_BOT_CALLBACK: 'https://clten.com/bot'
+GM_BOT_IMAGE: 'https://i.groupme.com/400x400.png.b1adfb9ab34841989190fddc05c8213f'
+
+# Google
+google_project_id: 'clten-28202'
+oauth_callback: 'https://clten.com/oauth2callback'
+google_client_id: 'CLIENT_ID'
+google_client_secret: 'CLIENT_SECRET'

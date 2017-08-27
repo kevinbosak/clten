@@ -1,0 +1,79 @@
+<script type="text/javascript">
+$('document').ready(function() {
+    $('#groupme form').submit(function() {
+        if ($('button[type="submit"]', this).val() == 'leave') {
+            return confirm('Are you sure you wish to leave this group?');
+        }
+    });
+});
+</script>
+
+<div id="groupme">
+	<header>
+		<h1>GroupMe Groups</h1>
+	</header>
+	<aside>
+		<% IF vars.user %>
+		<% INCLUDE 'main_column.html' %>
+		<% END %>
+	</aside>
+	<section>
+		<% IF vars.user.is_verified %>
+		<!-- VERIFIED USERS -->
+		<% ELSIF vars.user.groupme_id %>
+		<!-- UNVERIFIED USERS -->
+		<p>Thank you for connecting your GroupMe account! You have been added to our CltEn Verification chat. You will be contacted there shortly to verify your Enlightened status.</p>
+		<% END %>
+		<% IF vars.user.groupme_id %>
+		
+		<ul class="bullet-list">
+			<% FOREACH room in accessible_rooms %>
+			<% room_access_criteria = {is_member => 1} %>
+			<% room_access = room.search_related_rs('room_access', room_access_criteria) %>
+			<li class="<% IF joined_rooms.item(room.id) %>member<% ELSE %>nonmember<% END %>" >
+				<div class="name">
+					<% room.name %>
+					<span class="members">
+					<% room_access.count %>
+					</span>
+					<div class="topic">
+						<% room.topic %>
+					</div>
+					<% IF vars.user.is_verified %>
+					<!-- VERIFIED USERS --> 
+					<a href="/secure/group/<% room.id %>/history">View History</a>
+					<% ELSE %>
+					<!-- UNVERIFIED USERS -->
+					<div class="verify">You have successfully been added to CltEn Verification. A moderator will contact you there in order to begin the verification process</div>
+					<% END %>
+				</div>
+				<div class="link">
+					<form method="POST" action="/secure/groupme/<% room.id %>">
+						<% IF joined_rooms.item(room.id) %>
+						<button type="submit" name="action" value="leave" class="button">Leave</button>
+						<% ELSE %>
+						<button type="submit" name="action" value="join" class="button">Join</button>
+						<% END %>
+					</form>
+				</div>
+			</li>
+			<% END %>
+		</ul>
+		<!--
+        <div class="buttons">
+            <input type="submit" value="Save Groups"/>
+        </div>
+        -->
+		</form>
+		<% ELSE %>
+		<p>We use the <a href="http://groupme.com">GroupMe</a> chat service to communicate.  Please download and install GroupMe on your phone and sign up for an account, then fill out the following to get access to our verification chat.</p>
+		<form method="POST" action="/secure/groupme_connect">
+			<div class="form-group">
+				<label for="groupme_info">Enter the phone number or email address associated with your GroupMe account:</label>
+				<input class="form-control" name="groupme_info" id="groupme_info" type="text" size="20" value=""/>
+				<input type="submit" value="Submit"/>
+			</div>
+		</form>
+		<% END %>
+	</section>
+</div>

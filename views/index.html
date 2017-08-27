@@ -1,0 +1,74 @@
+<div id="home">
+	<header>
+		<h1>Welcome to Charlotte Enlightened</h1>
+	</header>
+	<aside>
+		<% IF vars.user %>
+		<% INCLUDE 'main_column.html' %>
+		<% END %>
+	</aside>
+	<section>
+		<% IF vars.user %>
+		<div class="agent">
+			<h2>
+				<% vars.user.agent_name %>
+			</h2>
+			<% IF vars.user.is_verified %>
+			<!-- UNVERIFIED USERS -->
+			<p>Welcome Agent!</p>
+			<% ELSE %>
+			<!-- VERIFIED USERS -->
+			<p>Thank you or verifying your account and registering with us! </p>
+			<p>First things first, you will need to <a href="http://www.groupme.com" target=_blank>Download and Register for GroupMe</a>, the chat app that we use to securely communicate as a group.</p>
+			<p>Once you have an account created you will need to complete our <a href="/secure/groupme">GroupMe Registration Form</a>. You will be added to our Verification Chat and be greeted by one of our moderators who will walk you through our simple verification process and set you up with full site credentials.</p>
+
+			<% END %>
+			<div class="divider"></div>
+			<h5>What's New:</h5>
+			<ul class="grid">
+                          <li><span class="date">(07/22/16)</span><strong>Recruiting cards: </strong> KPO has designed some recruitment business cards you can have printed <a href="http://www.zazzle.com/charlotte_enlightened_business_cards-240629631467829577"> here</a>.  These are great for handing out to all the Pokemon GO players!</li>
+                          <li><span class="date">(07/14/16)</span><strong>NEW CHATS and FROG CODE: </strong> In order to clean up the community and make sure there are no lingering security issues in our chats, we have created all new chatrooms and have moved to them. Your mets and level information will not change and you will have access to new chats that match the old ones you were in.  You also should have seen and signed our new community code of conduct, the <a href="/secure/frog_code"> Frog Code</a>.</li>
+                        </ul>
+<hr/>
+<h5>Old news</h5>
+			<ul class="grid">
+                <li><span class="date">(02/25/16)</span><strong>First Saturday!</strong>  Join this official cross-faction event on <strong>March 5th in NoDa</strong>!  More details can be found <a href="https://plus.google.com/events/cupvgsk16dlco9aj3jh446jf7b8">on the event page</a>.</li>
+                <li><span class="date">(09/7/15)</span><strong>CHARLOTTE ANOMALY!!!</strong> On Nov 14th Charlotte will be a satellite anomaly site.  Save the date, more information to come.</li>
+                            <% IF vars.user.access_level.value >= 300 %>
+                <li><span class="date">(06/19/15)</span>Charlotte Takeover!!   On July 11th, we are planning to get rid of as much blue within 485 as possible.  Details coming.  Click <a href="https://groupme.com/join_group/14539361/ibpBhE">here</a> to join the planning chat.</li>
+                <li><span class="date">(06/19/15)</span>Nashville Anomaly is 6/20.  It may be too late to go there and participate, but you can still help! We are doing a recharge event, likely at UNCC, to remotely help those on site in Nashville.  Inquire in chats.</li>
+                            <% END %>
+                <li><span class="date">(06/02/15)</span>This Saturday, come to the cross-faction <strong>Ingress First Saturday Event</strong> at Freedom Park.  More information can be found <a href="https://plus.google.com/u/0/events/cphjpbvj69dm70kvi6v61raolu0?authkey=CNCfouOMrZ2-Cg">here</a>.</li>
+				<li><span class="date">(05/12/15)</span>Agent Verification is now active. Visit the Roster and select the agents you have personally met in the field. You will see a <i class="fa fa-question-circle orange"></i> for Agent's you have selected. You will see a <i class="fa fa-exclamation-circle red"></i> for Agents that have selected you. Both agents are required to confirm they have met each other in order for the verification to become complete.</li>
+				<li><span class="date">(05/04/15)</span>Forest Lawn East (FLE) is  displeased with the gameplay on their property and has asked us to cease using this location immediately. Please respect their wishes and refrain from playing there moving forward.</li>
+				<li><span class="date">(05/01/15)</span>This site, Duhhh.</li>
+			</ul>
+		</div>
+		<% ELSE %>
+		<div class="guest">
+			<h2>Guest</h2>
+			<!--
+		<p>Let's get started...</p>
+		<p>#1 - Install and Register for GroupMe to connect to our chats. It's easiest if you use the same Gmail that you use for Ingress.</p>
+		<p><a href="http://www.groupme.com" class="button" target=_blank>Download GroupMe</a><p>
+		-->
+			<p>Thank you for your interest in joining Charlotte Enlightened! Please verify your identity by logging in via Google. None of your personal information will be shared with us.
+			
+				<% INCLUDE 'login.html' %>
+			</p>
+			<div class="divider"></div>
+			<div class="store">
+				<h2>Downloads</h2>
+				<p>Whatever text here...</p>
+				<img src="/images/googleplay.png"><img src="/images/appstore.png">
+			</div>
+			<div class="divider"></div>
+			<div class="area">
+				<h2>A Little About Us</h2>
+				<p>Our agents cover the entire  Charlotte metropolitan area, inlcuding Gastonia, Huntersville, Concord, Matthews, Pineville, Fort Mill.
+				<p><a href="/images/charlotte_map.jpg" class="colorbox"><img src="/images/charlotte_map.jpg" class="fill"></a></p>
+			</div>
+		</div>
+		<% END %>
+	</section>
+</div>

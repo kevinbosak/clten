@@ -1,0 +1,1300 @@
+---
+schema:
+  procedures: {}
+  tables:
+    access_level:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - met_access_level_id
+          match_type: ''
+          name: access_level_fk_met_access_level_id
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: access_level
+          type: FOREIGN KEY
+      fields:
+        id:
+          data_type: bigint
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        is_active:
+          data_type: boolean
+          default_value: 1
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: is_active
+          order: 7
+          size:
+            - 0
+        met_access_level_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: met_access_level_id
+          order: 6
+          size:
+            - 0
+        name:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: name
+          order: 3
+          size:
+            - 50
+        required_level:
+          data_type: int
+          default_value: 0
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: required_level
+          order: 4
+          size:
+            - 0
+        required_mets:
+          data_type: int
+          default_value: 0
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: required_mets
+          order: 5
+          size:
+            - 0
+        time_created:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_created
+          order: 8
+          size:
+            - 0
+        time_updated:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_updated
+          order: 9
+          size:
+            - 0
+        value:
+          data_type: integer
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: value
+          order: 2
+          size:
+            - 0
+      indices:
+        - fields:
+            - met_access_level_id
+          name: access_level_idx_met_access_level_id
+          options: []
+          type: NORMAL
+      name: access_level
+      options: []
+      order: 1
+    agent:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - groupme_id
+          match_type: ''
+          name: agent_groupme_id_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+        - deferrable: 1
+          expression: ''
+          fields:
+            - access_level_id
+          match_type: ''
+          name: agent_fk_access_level_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: access_level
+          type: FOREIGN KEY
+      fields:
+        access_level_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: access_level_id
+          order: 2
+          size:
+            - 0
+        agent_level:
+          data_type: int
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: agent_level
+          order: 5
+          size:
+            - 0
+        agent_name:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: agent_name
+          order: 4
+          size:
+            - 50
+        agreed_to_terms:
+          data_type: boolean
+          default_value: 0
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: agreed_to_terms
+          order: 12
+          size:
+            - 0
+        bio:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: bio
+          order: 9
+          size:
+            - 0
+        first_name:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: first_name
+          order: 6
+          size:
+            - 50
+        gplus:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: gplus
+          order: 11
+          size:
+            - 100
+        groupme_id:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 1
+          name: groupme_id
+          order: 3
+          size:
+            - 50
+        id:
+          data_type: bigint
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        is_verified:
+          data_type: boolean
+          default_value: 0
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: is_verified
+          order: 10
+          size:
+            - 0
+        last_name:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: last_name
+          order: 7
+          size:
+            - 50
+        play_area:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: play_area
+          order: 8
+          size:
+            - 255
+        status:
+          data_type: enum
+          default_value: unregistered
+          extra:
+            list:
+              - unregistered
+              - active
+              - deleted
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: status
+          order: 13
+          size:
+            - 100
+        time_created:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_created
+          order: 14
+          size:
+            - 0
+        time_updated:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_updated
+          order: 15
+          size:
+            - 0
+      indices:
+        - fields:
+            - access_level_id
+          name: agent_idx_access_level_id
+          options: []
+          type: NORMAL
+      name: agent
+      options: []
+      order: 3
+    agent_google:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - agent_id
+          match_type: ''
+          name: agent_google_fk_agent_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: agent
+          type: FOREIGN KEY
+      fields:
+        agent_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: agent_id
+          order: 2
+          size:
+            - 0
+        google_sub:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: google_sub
+          order: 3
+          size:
+            - 50
+        id:
+          data_type: bigint
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        time_created:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_created
+          order: 4
+          size:
+            - 0
+        time_updated:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_updated
+          order: 5
+          size:
+            - 0
+      indices:
+        - fields:
+            - agent_id
+          name: agent_google_idx_agent_id
+          options: []
+          type: NORMAL
+      name: agent_google
+      options: []
+      order: 5
+    agent_meeting:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - initiating_agent_id
+            - confirming_agent_id
+          match_type: ''
+          name: agent_ids_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+        - deferrable: 1
+          expression: ''
+          fields:
+            - confirming_agent_id
+          match_type: ''
+          name: agent_meeting_fk_confirming_agent_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: agent
+          type: FOREIGN KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - initiating_agent_id
+          match_type: ''
+          name: agent_meeting_fk_initiating_agent_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: agent
+          type: FOREIGN KEY
+      fields:
+        confirming_agent_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: confirming_agent_id
+          order: 3
+          size:
+            - 0
+        id:
+          data_type: bigint
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        initiating_agent_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: initiating_agent_id
+          order: 2
+          size:
+            - 0
+        status:
+          data_type: enum
+          default_value: proposed
+          extra:
+            list:
+              - proposed
+              - confirmed
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: status
+          order: 4
+          size:
+            - 50
+        time_created:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_created
+          order: 5
+          size:
+            - 0
+        time_updated:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_updated
+          order: 6
+          size:
+            - 0
+      indices:
+        - fields:
+            - confirming_agent_id
+          name: agent_meeting_idx_confirming_agent_id
+          options: []
+          type: NORMAL
+        - fields:
+            - initiating_agent_id
+          name: agent_meeting_idx_initiating_agent_id
+          options: []
+          type: NORMAL
+      name: agent_meeting
+      options: []
+      order: 6
+    bot_command:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+      fields:
+        help_text:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: help_text
+          order: 4
+          size:
+            - 0
+        id:
+          data_type: bigint
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        name:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: name
+          order: 3
+          size:
+            - 50
+        room_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: room_id
+          order: 2
+          size:
+            - 0
+        time_created:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_created
+          order: 5
+          size:
+            - 0
+        time_updated:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_updated
+          order: 6
+          size:
+            - 0
+      indices: []
+      name: bot_command
+      options: []
+      order: 2
+    bot_room_command:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - command_id
+          match_type: ''
+          name: bot_room_command_fk_command_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: bot_command
+          type: FOREIGN KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - room_id
+          match_type: ''
+          name: bot_room_command_fk_room_id
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields:
+            - id
+          reference_table: room
+          type: FOREIGN KEY
+      fields:
+        command_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: command_id
+          order: 3
+          size:
+            - 0
+        id:
+          data_type: bigint
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        mod_only:
+          data_type: boolean
+          default_value: 0
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: mod_only
+          order: 4
+          size:
+            - 0
+        room_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: room_id
+          order: 2
+          size:
+            - 0
+        time_created:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_created
+          order: 5
+          size:
+            - 0
+        time_updated:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_updated
+          order: 6
+          size:
+            - 0
+      indices:
+        - fields:
+            - command_id
+          name: bot_room_command_idx_command_id
+          options: []
+          type: NORMAL
+        - fields:
+            - room_id
+          name: bot_room_command_idx_room_id
+          options: []
+          type: NORMAL
+      name: bot_room_command
+      options: []
+      order: 7
+    chat_log:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - room_id
+            - message_id
+          match_type: ''
+          name: room_message_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+        - deferrable: 1
+          expression: ''
+          fields:
+            - agent_id
+          match_type: ''
+          name: chat_log_fk_agent_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: agent
+          type: FOREIGN KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - room_id
+          match_type: ''
+          name: chat_log_fk_room_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: room
+          type: FOREIGN KEY
+      fields:
+        agent_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: agent_id
+          order: 2
+          size:
+            - 0
+        attachments:
+          data_type: json
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: attachments
+          order: 7
+          size:
+            - 0
+        avatar_url:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: avatar_url
+          order: 5
+          size:
+            - 255
+        hearted_by:
+          data_type: 'text[]'
+          default_value: '{}'
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: hearted_by
+          order: 8
+          size:
+            - 0
+        id:
+          data_type: bigint
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        message:
+          data_type: text
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: message
+          order: 6
+          size:
+            - 0
+        message_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: message_id
+          order: 4
+          size:
+            - 0
+        message_time:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: message_time
+          order: 9
+          size:
+            - 0
+        room_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: room_id
+          order: 3
+          size:
+            - 0
+        time_created:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_created
+          order: 10
+          size:
+            - 0
+        time_updated:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_updated
+          order: 11
+          size:
+            - 0
+      indices:
+        - fields:
+            - agent_id
+          name: chat_log_idx_agent_id
+          options: []
+          type: NORMAL
+        - fields:
+            - room_id
+          name: chat_log_idx_room_id
+          options: []
+          type: NORMAL
+        - fields:
+            - message_id
+          name: message_id_key
+          options: []
+          type: NORMAL
+      name: chat_log
+      options: []
+      order: 8
+    room:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - groupme_id
+          match_type: ''
+          name: room_groupme_id_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+        - deferrable: 1
+          expression: ''
+          fields:
+            - access_level_id
+          match_type: ''
+          name: room_fk_access_level_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: access_level
+          type: FOREIGN KEY
+      fields:
+        access_level_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: access_level_id
+          order: 3
+          size:
+            - 0
+        bot_id:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: bot_id
+          order: 7
+          size:
+            - 50
+        groupme_bot_token:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: groupme_bot_token
+          order: 8
+          size:
+            - 50
+        groupme_id:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: groupme_id
+          order: 6
+          size:
+            - 0
+        id:
+          data_type: bigint
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        image_url:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: image_url
+          order: 5
+          size:
+            - 200
+        is_moderated:
+          data_type: boolean
+          default_value: 0
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: is_moderated
+          order: 9
+          size:
+            - 0
+        name:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: name
+          order: 2
+          size:
+            - 200
+        time_created:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_created
+          order: 10
+          size:
+            - 0
+        time_updated:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_updated
+          order: 11
+          size:
+            - 0
+        topic:
+          data_type: varchar
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: topic
+          order: 4
+          size:
+            - 200
+      indices:
+        - fields:
+            - access_level_id
+          name: room_idx_access_level_id
+          options: []
+          type: NORMAL
+      name: room
+      options: []
+      order: 4
+    room_access:
+      constraints:
+        - deferrable: 1
+          expression: ''
+          fields:
+            - id
+          match_type: ''
+          name: ''
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: PRIMARY KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - agent_id
+            - room_id
+          match_type: ''
+          name: agent_room_access_key
+          on_delete: ''
+          on_update: ''
+          options: []
+          reference_fields: []
+          reference_table: ''
+          type: UNIQUE
+        - deferrable: 1
+          expression: ''
+          fields:
+            - agent_id
+          match_type: ''
+          name: room_access_fk_agent_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: agent
+          type: FOREIGN KEY
+        - deferrable: 1
+          expression: ''
+          fields:
+            - room_id
+          match_type: ''
+          name: room_access_fk_room_id
+          on_delete: CASCADE
+          on_update: CASCADE
+          options: []
+          reference_fields:
+            - id
+          reference_table: room
+          type: FOREIGN KEY
+      fields:
+        agent_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: agent_id
+          order: 3
+          size:
+            - 0
+        can_search:
+          data_type: boolean
+          default_value: 1
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: can_search
+          order: 7
+          size:
+            - 0
+        group_user_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: group_user_id
+          order: 4
+          size:
+            - 0
+        id:
+          data_type: bigint
+          default_value: ~
+          is_auto_increment: 1
+          is_nullable: 0
+          is_primary_key: 1
+          is_unique: 0
+          name: id
+          order: 1
+          size:
+            - 0
+        is_member:
+          data_type: boolean
+          default_value: 1
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: is_member
+          order: 6
+          size:
+            - 0
+        is_mod:
+          data_type: boolean
+          default_value: 0
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: is_mod
+          order: 8
+          size:
+            - 0
+        is_owner:
+          data_type: boolean
+          default_value: 0
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: is_owner
+          order: 9
+          size:
+            - 0
+        room_id:
+          data_type: bigint
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 1
+          name: room_id
+          order: 2
+          size:
+            - 0
+        time_added:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 1
+          is_primary_key: 0
+          is_unique: 0
+          name: time_added
+          order: 5
+          size:
+            - 0
+        time_created:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_created
+          order: 10
+          size:
+            - 0
+        time_updated:
+          data_type: datetime
+          default_value: ~
+          is_nullable: 0
+          is_primary_key: 0
+          is_unique: 0
+          name: time_updated
+          order: 11
+          size:
+            - 0
+      indices:
+        - fields:
+            - agent_id
+          name: room_access_idx_agent_id
+          options: []
+          type: NORMAL
+        - fields:
+            - room_id
+          name: room_access_idx_room_id
+          options: []
+          type: NORMAL
+      name: room_access
+      options: []
+      order: 9
+  triggers: {}
+  views: {}
+translator:
+  add_drop_table: 0
+  filename: ~
+  no_comments: 0
+  parser_args:
+    sources:
+      - AccessLevel
+      - Agent
+      - Agent::Google
+      - Agent::Meeting
+      - Bot::Command
+      - Bot::RoomCommand
+      - ChatLog
+      - Room
+      - RoomAccess
+  parser_type: SQL::Translator::Parser::DBIx::Class
+  producer_args: {}
+  producer_type: SQL::Translator::Producer::YAML
+  show_warnings: 0
+  trace: 0
+  version: 0.11021

@@ -1,0 +1,65 @@
+<div id="history">
+	<header>
+		<h1>History for
+			<% room.name %>
+		</h1>
+	</header>
+	<aside>
+		<% IF vars.user %>
+		<% INCLUDE 'main_column.html' %>
+		<% END %>
+	</aside>
+	<section>
+		<% i = 1 %>
+		<% previous_user = '' %>
+		<% FOREACH message in messages %>
+		<% i = i + 1 %>
+		<div class="clten-row">
+			<div class="user">
+				<div class="avatar">
+					<% IF previous_user != message.agent.groupme_id %>
+					<% IF !message.agent.groupme_id %>
+					<img src="http://i.groupme.com/400x400.png.b1adfb9ab34841989190fddc05c8213f.avatar">
+					<% ELSE %>
+					<img src="<% message.avatar_url %>.avatar">
+					<% END %>
+					<% END %>
+				</div>
+				<% IF message.agent.groupme_id != 0 && (previous_user != message.agent.groupme_id) %>
+				<div class="agent_name">
+					<% message.agent.agent_name FILTER html_entity %>
+				</div>
+				<% END %>
+				<div class="timestamp">
+					<% message.message_time.set_time_zone('UTC').set_time_zone('America/New_York').mdy('/') %>
+					<% message.message_time.hour_12 %>
+					:
+					<% message.message_time.minute %>
+					:
+					<% message.message_time.second %>
+					<% message.message_time.am_or_pm %>
+				</div>
+			</div>
+			<div class="message <% IF message.agent.groupme_id == 0 %>system<% END %>">
+				<% message.message %>
+				<% IF message.attachments %>
+				<% FOREACH attachment in message.attachments %>
+				<% IF attachment.type == 'image' %>
+				<a class="colorbox message_image" href="<% attachment.url %>">Show Image</a>
+				<% END %>
+				<% END %>
+				<% END %>
+			</div>
+		</div>
+		<% previous_user = message.agent.groupme_id %>
+		<% END %>
+		
+		<!-- PAGINATION -->
+		<% current_page = params.page %>
+		<% IF !current_page %>
+		<% current_page = 1 %>
+		<% END %>
+		<% INCLUDE 'pagination.html' %>
+		<!-- /PAGINATION --> 
+	</section>
+</div>

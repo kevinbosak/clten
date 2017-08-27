@@ -1,0 +1,80 @@
+<div id="admin_user" class="admin">
+<header>
+	<h1>Admin: Edit User
+		<h2><span class="divider">
+			<% user.first_name %>
+			<% user.last_name %>
+			</span>
+			<% user.agent_name %>
+		</h2>
+		<% INCLUDE 'admin_header.html' %>
+	</h1>
+</header>
+<aside>
+	<% IF vars.user %>
+	<% INCLUDE 'main_column.html' %>
+	<% END %>
+</aside>
+<section>
+<form method="POST">
+	<% INCLUDE 'common_user_fields.html' %>
+	<div class="form-group">
+		<label for="access_level_id">Access Level:</label>
+		<select name="access_level_id" id="access_level_id" class="form-control">
+			<% FOREACH access_level in access_levels %>
+			<option <% IF user.access_level.id == access_level.id %> selected="selected"<% END %> value="<% access_level.id %>"/>
+			<% access_level.name %>
+			</option>
+			<% END %>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="status">Status:</label>
+		<select name="status" id="status" class="form-control">
+			<% FOREACH status in ['unregistered', 'active', 'deleted'] %>
+			<option <% IF user.status == status %> selected="selected"<% END %> value="<% status %>"/>
+			<% status FILTER ucfirst %>
+			</option>
+			<% END %>
+		</select>
+	</div>
+
+    <div class="radio"> <span>Roster: </span>
+        <label for="is_verified">
+            <input class="" name="is_verified" id="is_verified" type="radio" value="1" <% IF user.is_verified %>checked<% END %>>
+            Has Access </label>
+        <label for="is_verified">
+            <input class="" name="is_verified" id="is_verified" type="radio" value="0" <% IF !user.is_verified %>checked<% END %>>
+            No Access </label>
+    </div>
+
+    </div>
+	<div class="gplus">
+		<% FOR account IN user.google_account %>
+		<label>Google+:</label>
+		<div class="fakeinput"><a href="https://plus.google.com/<% account.google_sub %>" target=_blank>https://plus.google.com/
+			<% account.google_sub %>
+			</a></div>
+		<% END %>
+	</div>
+	<div class="buttons">
+		<input type="submit" value="Save User" class="button"/>
+	</div>
+</form>
+<div>
+<label>Agreed to Frog Code:</label> <% IF user.agreed_to_terms %> YES <% ELSE %> NO <% END %>
+</div>
+<div>
+<label>GroupMe:
+	<% user.groupme_id %>
+</label>
+<ul class="fakeinput">
+	<% FOR access IN room_access %>
+	<li>
+		<% access.room.name %>
+	</li>
+	<% END %>
+</ul>
+<div>
+	</section>
+</div>

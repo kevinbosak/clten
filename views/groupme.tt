@@ -1,0 +1,39 @@
+<h2>GroupMe groups</h2>
+<div class="row">
+    <div class="col-xs-12">
+    <% IF vars.user.groupme_id %>
+        <ul class="list-group">
+            <% FOREACH room in accessible_rooms %>
+            <li class="list-group-item row">
+                <div class="checkbox col-xs-3 <% joined_rooms.item(room.id) %> ">
+                    <span><% room.name %></span>
+                </div>
+                <div class="checkbox col-xs-6">
+                    <form method="POST" action="/secure/groupme/<% room.id %>">
+                    <% IF joined_rooms.item(room.id) %>
+                        <button type="submit" name="action" value="leave">Leave</button>
+                    <% ELSE %>
+                        <button type="submit" name="action" value="join">Join</button>
+                    <% END %>
+                    </form>
+                </div>
+                <div class="text-right col-xs-3"><a href="/secure/group/<% room.id %>/history">View History</a></div>
+            </li>
+            <% END %>
+        </ul>
+        <div>
+            <input type="submit" class="btn btn-default" value="Save Groups"/>
+        </div>
+    </form>
+    <% ELSE %>
+    <p>Connect to GroupMe</p>
+    <form method="POST" action="/secure/groupme_connect">
+        <div class="form-group">
+            <label for="groupme_info">Enter your phone number or email address associated with GroupMe (or GroupMe ID if you know it):</label>
+            <input class="form-control" name="groupme_info" id="groupme_info" type="text" size="20" value=""/>
+            <input type="submit" class="btn btn-default" value="Submit"/>
+        </div>
+    </form>
+    <% END %>
+    </div>
+</div>

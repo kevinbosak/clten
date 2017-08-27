@@ -1,0 +1,63 @@
+<% IF request.path.match('^/admin') %>
+<!-- ALL ADMIN PAGES -->
+<% END %>
+
+<% IF request.path == '/admin/users' %>
+<!-- ADMIN USERS -->
+
+<% ELSIF request.path == '/secure/groupme' %>
+<!-- GROUPME -->
+	<% IF vars.user.is_verified %>
+		<!-- VERIFIED USERS -->
+		<div class="module">
+		<h2>Chat Etiquette</h2>
+		<p>Please be polite and courteous to all agents in the chat and refrain from using profanity.</p>
+		</div>
+		<div class="module">
+		<h2>Available Groups</h2>
+		<p>Please feel free to join and participate in any groups listed on this page.</p>
+		<a href="/images/charlotte_areamap.png" class="colorbox button">Map of Chat Areas</a>
+		</div>
+	<% ELSIF vars.user.groupme_id %>
+		<!-- UNVERIFIED USERS -->
+		<div class="module">
+		<h2>Welcome New Agent</h2>
+		<div class="verify red">You have successfully been added to our CltEn Verification chat. A moderator will contact you there in order to begin your verification process.</div>
+		</div>
+    <% ELSE %>
+		<!-- NO GROUPME, UNVERIFIED -->
+		<div class="module">
+		<h2>Welcome New Agent</h2>
+		<div class="verify red">Please install the GroupMe app on your phone and enter the phone or email associated with your GroupMe account on this page.</div>
+		</div>
+	<% END %>
+					
+<% ELSIF request.path == '/' %>
+<!-- HOME -->
+<div class="module">
+	<h2>Ingress Links</h2>
+	<p><a href="/secure/frog_code">Frog Code</a></p>
+	<p><a href="http://www.ingress.com/" target=_blank>Ingress</a></p>
+	<p><a href="http://www.ingress.com/intel/" target=_blank>Ingress Intel</a></p>
+	<p><a href="https://support.google.com/ingress/#topic=3261401" target=_blank>Ingress Help Center</a></p>
+	<p><a href="https://www.ingress.com/events" target=_blank>Official Ingress Events</a></p>
+	<p><a href="https://support.google.com/ingress/answer/3066197?hl=en" target=_blank>Portal Guidelines</a></p>
+	<p><a href="http://www.ingress.com/terms/" target=_blank>Ingress ToS</a></p>
+	<p><a href="http://decodeingress.me/" target=_blank>Decode Ingress</a></p>
+	<p><a href="http://www.ingress.com/community/directory" target=_blank>G+ Community Directory</a></p>
+</div>
+
+<% ELSIF request.path == '/admin/groups' %>
+<!-- ADMIN GROUPS -->
+
+<% ELSIF request.path == '/secure/user' %>
+<!-- ROSTER -->
+<div class="module">
+<h2>Agent Verification</h2>
+<p>Please take a moment to Verify agents here. Please only verify agents that you have personally met in real life<p>
+<div><i class="fa fa-user green fa-fw" title="I Have Met This Agent"></i><!-- CONFIRMED --> Verification Confirmed</div>
+<div><i class="fa fa-question-circle orange fa-fw" title="Agent Confirmation Requested"></i><!-- REQUESTED --> Verification Requested</div>
+<div><i class="fa fa-exclamation-circle red fa-fw" title="Awaiting Agent Confirmation"></i><!-- AWAITING --> Your Approval Required</div>
+<div><i class="fa fa-user-plus gray fa-fw"></i><!-- REQUEST --> Unverified Agent</div>
+</div>
+<% END %>

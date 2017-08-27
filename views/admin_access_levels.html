@@ -1,0 +1,15 @@
+<div id="admin_access_levels" class="admin">
+<header>
+	<h1>Admin: Access Levels
+	<% INCLUDE 'admin_header.html' %>
+	</h1>
+</header>
+<section>
+    <ul class="bullet-list">
+        <% FOREACH access_level in access_levels %>
+            <li><div class="name"><a href="access_levels/<% access_level.id %>"><% access_level.value %> <% access_level.name %> (<% access_level.id %>)</a></div></li>
+        <% END %>
+    </ul>
+	
+</section>
+</div>

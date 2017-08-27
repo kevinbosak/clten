@@ -1,0 +1,55 @@
+# configuration file for development environment
+
+# the logger engine to use
+# console: log messages to STDOUT (your console where you started the
+#          application server)
+# file:    log message to a file in log/
+logger: "console"
+
+# the log level for this environment
+# core is the lowest, it shows Dancer's core log messages as well as yours
+# (debug, info, warning and error)
+log: "debug"
+logger_format: "%T from %h [@%D] %L (%f): %m"
+
+# should Dancer consider warnings as critical errors?
+warnings: 1
+
+# should Dancer show a stacktrace when an error is caught?
+show_errors: 1
+
+# auto_reload is a development and experimental feature
+# you should enable it by yourself if you want it
+# Module::Refresh is needed 
+# 
+# Be aware it's unstable and may cause a memory leak.
+# DO NOT EVER USE THIS FEATURE IN PRODUCTION 
+# OR TINY KITTENS SHALL DIE WITH LOTS OF SUFFERING
+#auto_reload: 1
+
+plugins:
+  DBIC:
+    default:
+      dsn: dbi:Pg:dbname=clten;host=127.0.0.1
+      schema_class: 'CltEn::Schema'
+      user: clten
+      password: clten
+
+DB_HOST: 'localhost'
+DB_USER: 'clten'
+DB_NAME: 'clten'
+DB_PASS: 'clten'
+
+GM_BOT_CALLBACK: 'https://test.clten.com/bot'
+
+# Rooms
+#UNVERIFIED_ACCESS_LEVEL_ID: 7
+#VERIFIED_ACCESS_LEVEL_ID: 6
+#UNVERIFIED_ROOM_ID: 7
+#ADMIN_ALERT_ROOM_ID: 18
+
+# Google
+google_project_id: 'clten-test'
+oauth_callback: 'https://test.clten.com/oauth2callback'
+google_client_id: 'CLIENT_ID'
+google_client_secret: 'SECRET'

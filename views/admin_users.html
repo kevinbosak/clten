@@ -1,0 +1,81 @@
+<div id="admin_users" class="admin">
+	<header>
+		<h1>Admin: Users
+			<% INCLUDE 'admin_header.html' %>
+		</h1>
+	</header>
+	<aside>
+		<% IF vars.user %>
+		<% INCLUDE 'main_column.html' %>
+		<% END %>
+	</aside>
+	<section>
+		<div class="clten-row">
+			<div class="clten_search">
+				<form class="form-inline">
+					<div class="form-group">
+						<input type="text" name="search_terms"  class="form-control" placeholder="Search..." value="<% params.search_terms %>">
+					</div>
+					<div class="form-group">
+						<select name="access_level_id" id="access_level_id" class="form-control">
+							<option value="" <% IF !params.access_level_id %>selected="selected"<% END %>>Auth Level... </option>
+							<% FOR access_level IN access_levels %>
+							<option value="<% access_level.id %>" <% IF params.access_level_id == access_level.id %>selected="selected"<% END %>>
+							<% access_level.name %>
+							</option>
+							<% END %>
+						</select>
+					</div>
+					<button class="btn btn-success" type="submit">Go!</button>
+					<!--
+			<div class="input-group">
+                <label for="access_level_id">Access Level:</label>
+                <select name="access_level_id" id="access_level_id">
+                    <option value="" <% IF !params.access_level_id %>selected="selected"<% END %>>None</option>
+                    <% FOR access_level IN access_levels %>
+                    <option value="<% access_level.id %>" <% IF params.access_level_id == access_level.id %>selected="selected"<% END %>><% access_level.name %></option>
+                    <% END %>
+                </select>
+                <span class="input-group-btn">
+                    <button class="btn btn-success" type="submit">Go!</button>
+                </span>
+            </div>-->
+				</form>
+			</div>
+		</div>
+		<% IF users.size %>
+		<ul class="bullet-list">
+			<% FOREACH user in users %>
+			<li>
+				<div class="name">
+					<div class="title"><a href="users/<% user.id %>">(<% user.id %>)<span>
+						<% user.first_name %>
+						<% user.last_name %>
+						</span>
+						<% user.agent_name %>
+						</a> </div>
+					<div class="icons"><span class="level"><% user.agent_level %></span><span class="auth"><% user.access_level.name %></span>
+						<% IF user.groupme_id %><span class="groupme"><img src="/images/groupme.png"></span>
+						<% ELSE %>
+						<span class="groupme"><img src="/images/groupme-grey.png"></span>
+						<% END %>
+						<% IF ! user.is_verified %>
+						<form method="POST" action="/admin/users/<% user.id %>/verify" class="icons">
+							<button type="submit" value="Verify Agent"/>
+							<i class="fa fa-shield"  title="Verify This Agent"></i><!-- VERIFY -->
+							</button>
+						</form>
+						<% ELSE %>
+						<i class="fa fa-shield green"  title="Verified Agent"></i>
+						<% END %>
+					</div>
+				</div>
+			</li>
+			<% END %>
+		</ul>
+		<% INCLUDE 'pagination.html' %>
+		<% ELSE %>
+		<div>No agents found</div>
+		<% END %>
+	</section>
+</div>

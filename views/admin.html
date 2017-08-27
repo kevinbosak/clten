@@ -1,0 +1,28 @@
+<div id="admin" class="admin">
+	<header>
+		<h1>Admin
+			<% INCLUDE 'admin_header.html' %>
+		</h1>
+	</header>
+	<aside>
+		<% IF vars.user %>
+		<% INCLUDE 'main_column.html' %>
+		<% END %>
+	</aside>
+	<section>
+		<ul class="bullet-list">
+			<li>
+				<div class="name"><a href="/admin/users">Users</a></div>
+			</li>
+			<li>
+				<div class="name"><a href="/admin/groups">Groups</a></div>
+			</li>
+			<li>
+				<div class="name"><a href="/admin/access_levels">Access Levels</a></div>
+			</li>
+			<li>
+				<div class="name"><a href="/admin/bots">Bots</a></div>
+			</li>
+		</ul>
+	</section>
+</div>

@@ -1,0 +1,27 @@
+            <% IF ! user %>
+                <% user = vars.user %>
+            <% END %>
+            <div class="form-group <% IF errors.agent_name %>error<% END %>">
+                <label for="agent_name">Agent:</label>
+                <input class="form-control" name="agent_name" id="agent_name" type="text" size="15" value="<% user.agent_name %>"/>
+            </div>
+            <div class="form-group <% IF errors.first_name %>error<% END %>">
+                <label for="first_name">First Name:</label>
+                <input class="form-control" name="first_name" id="first_name" type="text" size="30" value="<% user.first_name %>"/>
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input class="form-control" name="last_name" id="last_name" type="text" size="30" value="<% user.last_name %>"/>
+            </div>
+            <div class="form-group <% IF errors.agent_level %>error<% END %>">
+                <label for="agent_level">Level:</label>
+                <select name="agent_level" id="agent_level" class="form-control">
+                    <% FOREACH level in [1..16] %>
+                        <option <% IF user.agent_level == level %> selected="selected"<% END %> value="<% level %>"/><% level %></option>
+                    <% END %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="play_area">Area of Influence:</label>
+            <input class="form-control" name="play_area" id="play_area" type="text" size="5" value="<% user.play_area %>"/>
+            </div>

@@ -1,0 +1,22 @@
+<div id="user">
+	<header>
+		<h1>Agent Profle</h1>
+	</header>
+	<aside>
+		<% IF vars.user %>
+		<% INCLUDE 'main_column.html' %>
+		<% END %>
+	</aside>
+	<section>
+		<div class="clten-row">
+			<div class="agent">
+				<% agent.agent_name %>
+			</div>
+			<div class="name">
+				<% agent.first_name %> <% agent.last_name %>
+			</div>
+			<div class="level"><% agent.agent_level %></div>
+			<div class="area"><% agent.play_area %></div>
+		</div>
+	</section>
+</div>

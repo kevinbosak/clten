@@ -1,0 +1,59 @@
+<% IF request.is_post && !errors %>
+<div class="alert alert-warning alert-dismissible" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<strong>Success!</strong> You are now fully registered. To join the chats, download the <a href="http://groupme.com">GroupMe</a> app and then head over to <a href="/secure/groupme"> link your GroupMe account</a>.
+</div>
+<% END %>
+<div id="profile">
+	<header>
+		<h1>My Profile</h1>
+	</header>
+	<aside>
+		<% IF vars.user %>
+		<% INCLUDE 'main_column.html' %>
+		<% END %>
+	</aside>
+	<section>
+		<% IF vars.user.status == 'unregistered' %>
+		<p>Please complete the fields below to finish registering for the site.</p>
+		<% END %>
+		<form method="POST">
+			<% INCLUDE 'common_user_fields.html' %>
+			<div class="buttons">
+				<input type="submit" value="Save Profile" class="button"/>
+			</div>
+		</form>
+		<% IF pending_meetings.size %>
+		<h2>Confirmation Requested</h2>
+		<ul class="requested grid">
+			<% FOR meeting IN pending_meetings %>
+			<% agent = meeting.initiating_agent %>
+			<li><span class="divider">
+				<% agent.first_name %>
+				<% agent.last_name %>
+				</span>
+				<% agent.agent_name %>
+				<span class="level">
+				<% agent.agent_level %>
+				</span>
+				<form action="/secure/user/<% meeting.initiating_agent_id %>/meet" method="POST" class="icons">
+					<button type="submit" value="I confirm I've met this agent" title="Awaiting Agent Confirmation"/>
+					<i class="fa fa-exclamation-circle red"  title="Awaiting Agent Confirmation"></i><!-- AWAITING -->
+					</button>
+				</form>
+			</li>
+			<% END %>
+		</ul>
+		<% END %>
+        <% IF met_agents.size %>
+		<h2>Agents I've Met</h2>
+		<ul class="confirmed grid">
+			<% FOR agent IN met_agents %>
+			<li><span class="divider">
+				<% agent.first_name %> <% agent.last_name %></span><% agent.agent_name %>
+				<span class="level"><% agent.agent_level %></span> <i class="fa fa-user green" title="I Have Met This Agent"></i></li>
+			<% END %>
+		</ul>
+        <% END %>
+	</section>
+</div>

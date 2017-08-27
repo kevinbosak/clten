@@ -1,0 +1,39 @@
+<% current_page = params.page %>
+<% IF !current_page %>
+    <% current_page = 1 %>
+<% END %>
+<% path = request.path %>
+
+<nav class="clten_pagination">
+  <ul class="pagination">
+    <% IF page_count > 1 && current_page != 1 %>
+    <li>
+      <% params.page = current_page - 1 %>
+      <% uri = request.uri_for(path, params) %>
+      <a href="<% uri %>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <% END %>
+
+    <% FOREACH page in [1..page_count] %>
+        <% params.page = page %>
+        <% uri = request.uri_for(path, params) %>
+        <% IF current_page == page %>
+        <li class="disabled"> <a href="<% uri %>"><% page %></a> </li>
+        <% ELSE %>
+        <li> <a href="<% uri %>"><% page %></a> </li>
+        <% END %>
+    <% END %>
+
+    <% IF page_count > 1 && current_page + 1 < page_count %>
+    <li>
+        <% params.page = current_page + 1 %>
+        <% uri = request.uri_for(path, params) %>
+      <a href="<% uri %>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <% END %>
+  </ul>
+</nav>

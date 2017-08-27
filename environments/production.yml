@@ -1,0 +1,43 @@
+# configuration file for production environment
+
+# only log warning and error messages
+log: "debug"
+
+# log message to a file in logs/
+logger: "file"
+
+# don't consider warnings critical
+warnings: 0
+
+# hide errors 
+show_errors: 0
+
+# cache route resolution for maximum performance
+route_cache: 1
+
+plugins:
+  DBIC:
+    default:
+      dsn: dbi:Pg:dbname=clten;host=cltendb.cj3w9zckkucc.us-east-1.rds.amazonaws.com
+      schema_class: 'CltEn::Schema'
+      user: clten
+      password: INSERT_PASSWORD
+
+DB_HOST: 'cltendb.cj3w9zckkucc.us-east-1.rds.amazonaws.com'
+DB_USER: 'clten'
+DB_NAME: 'clten'
+DB_PASS: 'INSERT_PASSWORD'
+
+GM_BOT_CALLBACK: 'https://test.clten.com/bot'
+
+# Rooms
+#UNVERIFIED_ACCESS_LEVEL_ID: 7
+#VERIFIED_ACCESS_LEVEL_ID: 6
+#UNVERIFIED_ROOM_ID: 7
+#ADMIN_ALERT_ROOM_ID: 18
+
+# Google
+google_project_id: 'clten-28202'
+oauth_callback: 'https://clten.com/oauth2callback'
+google_client_id: 'CLIENT_ID'
+google_client_secret: 'SECRET'

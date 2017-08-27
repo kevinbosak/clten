@@ -1,0 +1,77 @@
+<div id="users">
+	<header>
+		<h1>Agent Roster</h1>
+	</header>
+	<aside>
+		<% IF vars.user %>
+		<% INCLUDE 'main_column.html' %>
+		<% END %>
+	</aside>
+	<section>
+		<div class="clten-row">
+			<div class="clten_search">
+				<form>
+					<div class="form-inline">
+						<div class="form-group">
+							<input type="text" name="search_terms" class="form-control" placeholder="Search..." value="<% params.search_terms %>">
+						</div>
+						<button class="btn btn-success" type="submit">Go!</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<% IF agents.size %>
+		<ul class="bullet-list">
+			<% FOREACH agent in agents %>
+			<% IF agent.id == vars.user.id %>
+			<% NEXT %>
+			<% END %>
+			<li>
+				<div class="name"> 
+					<!--<a href="/secure/user/<% agent.id %>">--> 
+					<span class="divider">
+					<% agent.first_name %>
+					<% agent.last_name %>
+					</span>
+					<% agent.agent_name %>
+					<span class="level"><% agent.agent_level %></span> 
+					<!--</a>-->
+					
+					<% confirmed_meeting = confirmed_meetings.item(agent.id) %>
+					<% initiated_meeting = initiated_meetings.item(agent.id) %>
+					<% IF confirmed_meeting %>
+					<% IF confirmed_meeting.status == 'confirmed' %>
+					<i class="fa fa-user green" title="I Have Met This Agent"></i><!-- CONFIRMED -->
+					<% ELSE %>
+					<i class="fa fa-question-circle orange" title="Agent Confirmation Requested"></i><!-- REQUESTED -->
+					<% END %>
+					<% ELSIF initiated_meeting %>
+					<% IF initiated_meeting.status == 'confirmed' %>
+					<i class="fa fa-user green" title="I Have Met This Agent"></i><!-- CONFIRMED -->
+					<% ELSE %>
+					<form action="/secure/user/<% agent.id %>/meet" method="POST">
+						<button type="submit" value="I confirm I've met this agent"/>
+						<i class="fa fa-exclamation-circle red" title="Awaiting Agent Confirmation"></i><!-- AWAITING -->
+						</button>
+					</form>
+					<% END %>
+					<% ELSE %>
+					<form action="/secure/user/<% agent.id %>/meet" method="POST">
+						<button type="submit" value="I've met this agent" title="Send Met Request"/>
+						<i class="fa fa-user-plus gray"></i><!-- REQUEST -->
+						</button>
+					</form>
+					<% END %>
+				</div>
+				<div class="location">
+					<% agent.play_area %>
+				</div>
+			</li>
+			<% END %>
+		</ul>
+		<% INCLUDE 'pagination.html' %>
+		<% ELSE %>
+		<div>No agents found</div>
+		<% END %>
+	</section>
+</div>

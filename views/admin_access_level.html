@@ -1,0 +1,51 @@
+<div id="admin_access_level" class="admin">
+<header>
+	<h1>Admin: Edit Access Level
+	<h2><% access_level.name %> (<% access_level.value %>)</h2>
+	<% INCLUDE 'admin_header.html' %>
+	</h1>
+</header>
+
+<section>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Access Level Name:</label>
+                <input class="form-control" name="name" id="name" type="text" size="15" value="<% access_level.name %>"/>
+            </div>
+
+            <div class="form-group">
+                <label for="value">Value:</label>
+                <input class="form-control" name="value" id="value" type="text" size="15" value="<% access_level.value %>"/>
+            </div>
+
+            <div class="radio">
+			<span>Active:</span>
+                <label for="is_active">
+                <input class="" name="is_active" id="is_active" type="radio" value="1" <% IF access_level.is_active %>checked<% END %>>Active
+                </label>
+				<label for="is_active">
+                <input class="" name="is_active" id="is_active" type="radio" value="0" <% IF !access_level.is_active %>checked<% END %>>Inactive
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label for="required_mets">Required "Mets":</label>
+                <input class="form-control" name="required_mets" id="required_mets" type="text" size="5" value="<% access_level.required_mets || 0 %>"/>
+            </div>
+			
+			<div class="form-group">
+                <label for="met_access_level_id">Auth Level for "Mets":</label>
+                <select name="met_access_level_id" id="met_access_level_id" class="form-control">
+                    <option <% IF !access_level.met_access_level %> selected="selected"<% END %> value=""/>None</option>
+                    <% FOREACH al in access_levels %>
+                        <option <% IF access_level.met_access_level.id == al.id %> selected="selected"<% END %> value="<% al.id %>"/><% al.name %></option>
+                    <% END %>
+                </select>
+            </div>
+            <div class="buttons">
+                <input type="submit" value="Save Access Level" class="button"/>
+            </div>
+        </form>
+</section>
+
+</div>
